@@ -1,0 +1,121 @@
+## Placa: CYD-2432S028
+
+### Resumo das Configurações
+
+- **Ecrã:** Resolução 320x240, controlador ILI9341_2.
+- **Toque:** Ecrã tátil resistivo.
+- **Pinos Principais:**
+  - TFT_MISO: 12, TFT_MOSI: 13, TFT_SCLK: 14, TFT_CS: 15, TFT_DC: 2, TFT_RST: -1, BACKLIGHT: 21.
+  - SDCARD_CS: 5, SDCARD_SCK: 18, SDCARD_MISO: 19, SDCARD_MOSI: 23.
+  - I2C: SDA: 27, SCL: 22.
+- **Bibliotecas:** Nenhuma dependência de biblioteca específica mencionada no 'CYD-2432S028.ini'.
+
+### Referências Globais
+
+.github/workflows/buil_parallel.yml:          - { env: "CYD-2432S028",                    family: "ESP32",}
+.github/workflows/buil_parallel.yml:          - { env: "LAUNCHER_CYD-2432S028",           family: "ESP32",}
+.github/workflows/PR_All_envs.yml:          - { env: "CYD-2432S028",                    family: "ESP32",}
+.github/workflows/PR_All_envs.yml:          - { env: "LAUNCHER_CYD-2432S028",           family: "ESP32",}
+.github/workflows/PR_check.yml:              env: "LAUNCHER_CYD-2432S028",
+boards/phantom/phantom.ini:board = CYD-2432S028
+boards/CYD-2432S028/CYD-2432S028.ini:board = CYD-2432S028
+boards/CYD-2432S028/CYD-2432S028.ini:build_src_filter =${env.build_src_filter} +<../boards/CYD-2432S028>
+boards/CYD-2432S028/CYD-2432S028.ini:	-Iboards/CYD-2432S028
+boards/CYD-2432S028/CYD-2432S028.ini:	-DDEVICE_NAME='"CYD-2432S028"'
+boards/CYD-2432S028/CYD-2432S028.ini:[env:CYD-2432S028]
+boards/CYD-2432S028/CYD-2432S028.ini:	-DDEVICE_NAME='"CYD-2432S028"'
+boards/CYD-2432S028/CYD-2432S028.ini:extends=env:CYD-2432S028
+boards/CYD-2432S028/CYD-2432S028.ini:	${env:CYD-2432S028.build_flags}
+boards/CYD-2432S028/CYD-2432S028.ini:extends=env:CYD-2432S028
+boards/CYD-2432S028/CYD-2432S028.ini:	${env:CYD-2432S028.build_flags}
+boards/CYD-2432S028/CYD-2432S028.ini:[env:LAUNCHER_CYD-2432S028]
+boards/CYD-2432S028/CYD-2432S028.ini:extends=env:CYD-2432S028
+boards/CYD-2432S028/CYD-2432S028.ini:	${env:CYD-2432S028.build_flags}
+boards/CYD-2432S028/CYD-2432S028.ini:	-DDEVICE_NAME='"LAUNCHER_CYD-2432S028"'
+boards/pinouts/pins_arduino.h:#include "../CYD-2432S028/pins_arduino.h"
+platformio.ini:	;CYD-2432S028
+platformio.ini:	;LAUNCHER_CYD-2432S028
+
+## Placa: marauder-touch
+
+### Resumo das Configurações
+
+- **Ecrã:** Resolução 320x240.
+- **Toque:** Ecrã tátil XPT2046.
+- **Pinos Principais:**
+  - TFT_MISO: 19, TFT_MOSI: 23, TFT_SCLK: 18, TFT_CS: 17, TFT_DC: 16, TFT_RST: 5, TFT_BL: 32.
+  - SDCARD_CS: 12 (v4-v6) ou 14 (v6.1).
+  - Toque: TOUCH_CS: 21.
+- **Bibliotecas:** Nenhuma dependência de biblioteca específica mencionada no 'marauder-touch.ini'.
+
+### Referências Globais
+
+boards/pinouts/pins_arduino.h:#include "../marauder-touch/pins_arduino.h"
+boards/marauder-touch/marauder-touch.ini:build_src_filter =${env.build_src_filter} +<../boards/marauder-touch>
+boards/marauder-touch/marauder-touch.ini:	-Iboards/marauder-touch
+
+## Placa: lilygo-t-embed-cc1101
+
+### Resumo das Configurações
+
+- **Ecrã:** Resolução 170x320, controlador ST7789.
+- **Toque:** Sem ecrã tátil.
+- **Pinos Principais:**
+  - TFT_MOSI: 9, TFT_SCLK: 11, TFT_CS: 41, TFT_DC: 16, TFT_RST: 40, TFT_BL: 21.
+  - SDCARD_CS: 13.
+  - CC1101: GDO0: 3, GDO2: 38, SS: 12.
+- **Bibliotecas:**
+  - lewisxhe/XPowersLib @0.2.7
+  - mathertel/RotaryEncoder @1.5.3
+  - fastled/FastLED @3.9.4
+
+### Referências Globais
+
+.github/workflows/buil_parallel.yml:          - { env: "lilygo-t-embed-cc1101",           family: "ESP32-S3",}
+.github/workflows/PR_All_envs.yml:          - { env: "lilygo-t-embed-cc1101",           family: "ESP32-S3",}
+boards/pinouts/pins_arduino.h:#include "../lilygo-t-embed-cc1101/pins_arduino.h"
+boards/pinouts/pins_arduino.h:#include "../lilygo-t-embed-cc1101/pins_arduino.h"
+boards/lilygo-t-embed-cc1101/lilygo-t-embed-cc1101.ini:[env:lilygo-t-embed-cc1101]
+boards/lilygo-t-embed-cc1101/lilygo-t-embed-cc1101.ini:board = lilygo-t-embed-cc1101
+boards/lilygo-t-embed-cc1101/lilygo-t-embed-cc1101.ini:build_src_filter =${env.build_src_filter} +<../boards/lilygo-t-embed-cc1101>
+boards/lilygo-t-embed-cc1101/lilygo-t-embed-cc1101.ini:	-Iboards/lilygo-t-embed-cc1101
+boards/lilygo-t-embed-cc1101/lilygo-t-embed.ini:build_src_filter =${env.build_src_filter} +<../boards/lilygo-t-embed-cc1101>
+boards/lilygo-t-embed-cc1101/lilygo-t-embed.ini:	-Iboards/lilygo-t-embed-cc1101
+platformio.ini:	lilygo-t-embed-cc1101
+
+## Placa: ESP-General
+
+### Resumo das Configurações
+
+- **Ecrã:** Sem ecrã definido por defeito.
+- **Toque:** Sem ecrã tátil definido por defeito.
+- **Pinos Principais:**
+  - I2C: SDA: 8, SCL: 46.
+  - SPI: MOSI: 11, MISO: 13, SCK: 12, SS: 10.
+  - CC1101: GDO0: 9, SS: 10.
+- **Bibliotecas:** Nenhuma dependência de biblioteca específica mencionada no 'ESP-General.ini'.
+
+### Referências Globais
+
+boards/ESP-General/ESP-General.ini:board = ESP-General
+boards/ESP-General/ESP-General.ini:build_src_filter =${env.build_src_filter} +<../boards/ESP-General>
+boards/ESP-General/ESP-General.ini:	-Iboards/ESP-General
+boards/pinouts/pins_arduino.h:#include "../ESP-General/pins_arduino.h"
+
+## Placa: _New-Device-Model
+
+### Resumo das Configurações
+
+- **Ecrã:** Resolução 135x240, controlador ST7789_2.
+- **Toque:** Sem ecrã tátil definido por defeito.
+- **Pinos Principais:**
+  - TFT_MOSI: 35, TFT_SCLK: 36, TFT_CS: 37, TFT_DC: 34, TFT_RST: 33, TFT_BL: 38.
+  - SDCARD_CS: 12, SDCARD_SCK: 40, SDCARD_MISO: 39, SDCARD_MOSI: 14.
+  - I2C: SDA: 2, SCL: 1.
+- **Bibliotecas:**
+  - xylopyrographer/LiteLED@^1.2.0
+
+### Referências Globais
+
+boards/_New-Device-Model/_New-Device-Model.ini:board = _New-Device-Model
+boards/_New-Device-Model/_New-Device-Model.ini:	-Iboards/_New-Device-Model
