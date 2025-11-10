@@ -75,7 +75,8 @@ extern SPIClass CC_NRF_SPI;
 extern bool clock_set;
 extern time_t localTime;
 extern struct tm *timeInfo;
-extern ESP32Time rtc;
+extern ESP32Time rtc;  // Usando ESP32Time para funcionalidades de data/hora
+extern time_t rtcTime; // Tempo usando funções nativas do ESP32
 extern NTPClient timeClient;
 extern Timezone myTZ;
 

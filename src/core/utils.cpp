@@ -38,8 +38,9 @@ void updateClockTimezone() {
     localTime = myTZ.toLocal(timeClient.getEpochTime());
 
 #if !defined(HAS_RTC)
-    rtc.setTime(timeClient.getEpochTime());
-    updateTimeStr(rtc.getTimeStruct());
+    // rtc.setTime(timeClient.getEpochTime());  // Removido - usando tempo nativo do ESP32
+    // updateTimeStr(rtc.getTimeStruct());      // Removido - usando tempo nativo do ESP32
+    updateTimeStr(*localtime(&localTime)); // Usando tempo nativo do ESP32
     clock_set = true;
 #endif
 }

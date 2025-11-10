@@ -100,7 +100,7 @@ void BruceConfigPins::toJson(JsonObject obj) const {
     gps_bus.toJson(_gps);
 }
 
-void BruceConfigPins::loadFile(JsonDocument &jsonDoc, bool checkFS) {
+void BruceConfigPins::loadFile(StaticJsonDocument<4096> &jsonDoc, bool checkFS) {
     FS *fs;
     if (checkFS) {
         if (!getFsStorage(fs)) return;
@@ -128,14 +128,14 @@ void BruceConfigPins::loadFile(JsonDocument &jsonDoc, bool checkFS) {
 }
 
 void BruceConfigPins::fromFile(bool checkFS) {
-    JsonDocument jsonDoc;
+    StaticJsonDocument<4096> jsonDoc;
     loadFile(jsonDoc, checkFS);
 
     if (!jsonDoc.isNull()) fromJson(jsonDoc.as<JsonObject>());
 }
 
 void BruceConfigPins::createFile() {
-    JsonDocument jsonDoc;
+    StaticJsonDocument<4096> jsonDoc;
     toJson(jsonDoc.to<JsonObject>());
     serializeJsonPretty(jsonDoc, Serial);
 
@@ -158,7 +158,7 @@ void BruceConfigPins::createFile() {
 }
 
 void BruceConfigPins::saveFile() {
-    JsonDocument jsonDoc;
+    StaticJsonDocument<4096> jsonDoc;
     loadFile(jsonDoc);
 
     if (jsonDoc.isNull()) return createFile();
@@ -231,6 +231,7 @@ void BruceConfigPins::setUARTPins(UARTPins value) {
     validateUARTPins(value);
     saveFile();
 }
+
 void BruceConfigPins::validateSpiPins(SPIPins value) {
     if (value.sck < 0 || value.sck > GPIO_PIN_COUNT) value.sck = GPIO_NUM_NC;
     if (value.miso < 0 || value.miso > GPIO_PIN_COUNT) value.miso = GPIO_NUM_NC;

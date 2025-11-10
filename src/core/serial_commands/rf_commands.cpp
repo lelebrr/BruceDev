@@ -157,7 +157,7 @@ uint32_t rfSendCallback(cmd *c) {
     args_str.trim();
     // serialDevice->println(command);
 
-    JsonDocument jsonDoc;
+    StaticJsonDocument<2048> jsonDoc;
     if (deserializeJson(jsonDoc, args_str)) {
         serialDevice->println("Failed to parse json");
         serialDevice->println(args_str);

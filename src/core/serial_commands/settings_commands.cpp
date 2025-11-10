@@ -11,7 +11,7 @@ uint32_t settingsCallback(cmd *c) {
     setting_name.trim();
     setting_value.trim();
 
-    JsonDocument jsonDoc = bruceConfig.toJson();
+    auto jsonDoc = bruceConfig.toJson();
     JsonObject setting = jsonDoc.as<JsonObject>();
 
     if (setting_name.length() == 0 && setting_value.length() == 0) {

@@ -12,24 +12,26 @@
 
 void OthersMenu::optionsMenu() {
     options = {
-        {"QRCodes",      qrcode_menu                              },
-        {"Megalodon",    shark_setup                              },
+        {"QRCodes",      qrcode_menu       },
+        {"Megalodon",    shark_setup       },
 #ifdef MIC_SPM1423
-        {"Mic Spectrum", mic_test                                 },
-        {"Mic Record",   mic_record                               }, //@deveclipse
+        {"Mic Spectrum", mic_test          },
+        {"Mic Record",   mic_record        }, //@deveclipse
 #endif
 #ifndef LITE_VERSION
-        {"BadUSB",       [=]() { ducky_setup(hid_usb, false); }   },
-        {"USB Keyboard", [=]() { ducky_keyboard(hid_usb, false); }},
+    // {"BadUSB",       [=]() { ducky_setup(hid_usb, false); }   },  // Commented out - HIDInterface not
+    // available
+    // {"USB Keyboard", [=]() { ducky_keyboard(hid_usb, false); }},  // Commented out - HIDInterface not
+    // available
 #endif
 #ifdef USB_as_HID
-        {"Clicker",      clicker_setup                            },
+        {"Clicker",      clicker_setup     },
 #endif
 #ifndef LITE_VERSION
-        {"Interpreter",  run_bjs_script                           },
-        {"iButton",      setup_ibutton                            },
+        {"Interpreter",  run_bjs_script    },
+        {"iButton",      setup_ibutton     },
 #endif
-        {"Timer",        [=]() { Timer(); }                       },
+        {"Timer",        [=]() { Timer(); }},
     };
     addOptionToMainMenu();
 

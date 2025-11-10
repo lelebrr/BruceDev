@@ -6,7 +6,8 @@
       "-DARDUINO_ARCH_ESP32",
       "-DARDUINO_BOARD=\"ESP32-3248S035\"",
       "-DDEVICE_NAME=\"ESP32-3248S035\"",
-      "-DARDUINO_USB_CDC_ON_BOOT=1"
+      "-DARDUINO_USB_CDC_ON_BOOT=1",
+      "-DESP32_3248S035=1"
     ],
     "f_cpu": "240000000L",
     "f_flash": "80000000L",

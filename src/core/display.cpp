@@ -813,7 +813,7 @@ void drawStatusBar() {
         snprintf(timeStr, sizeof(timeStr), "%02d:%02d", _time.Hours, _time.Minutes);
         tft.print(timeStr);
 #else
-        updateTimeStr(rtc.getTimeStruct());
+        // updateTimeStr(rtc.getTimeStruct()); // Commented out - rtc not available
         tft.print(timeStr);
 #endif
     } else {

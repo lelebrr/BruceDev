@@ -10,7 +10,7 @@ public:
     void setup(void);
 
     SimpleCLI getCli() { return _cli; };
-    bool parse(const String &input) { return _cli.parse(input); }
+    void parse(const String &input) { _cli.parse(input); }
 
 private:
     SimpleCLI _cli;

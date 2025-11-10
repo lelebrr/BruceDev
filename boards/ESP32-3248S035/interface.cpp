@@ -739,6 +739,21 @@ void testAudio() {
     tft.fillScreen(TFT_BLACK);
 }
 
+String getRGBValues(String color) {
+    // Retorna os valores RGB como string para exibição
+    if (color == "RED") return "255, 0, 0";
+    if (color == "GREEN") return "0, 255, 0";
+    if (color == "BLUE") return "0, 0, 255";
+    if (color == "WHITE") return "255, 255, 255";
+    if (color == "YELLOW") return "255, 255, 0";
+    if (color == "CYAN") return "0, 255, 255";
+    if (color == "MAGENTA") return "255, 0, 255";
+    if (color == "ORANGE") return "255, 165, 0";
+    if (color == "PURPLE") return "128, 0, 128";
+    if (color == "PINK") return "255, 192, 203";
+    return "0, 0, 0";
+}
+
 void testRGBLed() {
     tft.fillScreen(TFT_BLACK);
     tft.setCursor(10, 10);
@@ -802,21 +817,6 @@ void testRGBLed() {
     delay(2000);
 
     tft.fillScreen(TFT_BLACK);
-}
-
-String getRGBValues(String color) {
-    // Retorna os valores RGB como string para exibição
-    if (color == "RED") return "255, 0, 0";
-    if (color == "GREEN") return "0, 255, 0";
-    if (color == "BLUE") return "0, 0, 255";
-    if (color == "WHITE") return "255, 255, 255";
-    if (color == "YELLOW") return "255, 255, 0";
-    if (color == "CYAN") return "0, 255, 255";
-    if (color == "MAGENTA") return "255, 0, 255";
-    if (color == "ORANGE") return "255, 165, 0";
-    if (color == "PURPLE") return "128, 0, 128";
-    if (color == "PINK") return "255, 192, 203";
-    return "0, 0, 0";
 }
 
 void testLDR() {

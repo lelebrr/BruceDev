@@ -1,12 +1,31 @@
 #ifndef pins_arduino_h
 #define pins_arduino_h
 
-#define ESP32_3248S035
+#ifdef ARDUINO_USB_CDC_ON_BOOT
+#undef ARDUINO_USB_CDC_ON_BOOT
+#endif
+#define ARDUINO_USB_CDC_ON_BOOT 0
 
 // ESP32 WROOM-32 Pin Definitions
+#ifndef EXTERNAL_NUM_INTERRUPTS
 #define EXTERNAL_NUM_INTERRUPTS 48
+#endif
+#ifndef NUM_DIGITAL_PINS
 #define NUM_DIGITAL_PINS 48
+#endif
+#ifndef NUM_ANALOG_INPUTS
 #define NUM_ANALOG_INPUTS 16
+#endif
+
+// Standard SPI Pins (VSPI)
+#define SCK 18
+#define MISO 19
+#define MOSI 23
+#define SS 5
+
+// Standard I2C Pins
+#define SDA 22
+#define SCL 23
 
 // UART Pins
 #define UART0_TXD 1
@@ -17,14 +36,36 @@
 #define UART2_RXD 16
 
 // SPI Pins (Display ST7796)
+#ifdef TFT_MOSI
+#undef TFT_MOSI
+#endif
 #define TFT_MOSI 13
+
+#ifdef TFT_SCLK
+#undef TFT_SCLK
+#endif
 #define TFT_SCLK 14
+
+#ifdef TFT_CS
+#undef TFT_CS
+#endif
 #define TFT_CS 15
+
+#ifdef TFT_DC
+#undef TFT_DC
+#endif
 #define TFT_DC 21
+
+#ifdef TFT_RST
+#undef TFT_RST
+#endif
 #define TFT_RST 4
 #define TFT_BACKLIGHT 27
 
 // Touch Resistive XPT2046 (SPI)
+#ifdef TOUCH_CS
+#undef TOUCH_CS
+#endif
 #define TOUCH_CS 13
 #define TOUCH_CLK 14
 #define TOUCH_DIN 12
@@ -32,9 +73,21 @@
 #define TOUCH_IRQ 33
 
 // SD Card SPI (Compartilhado com Display)
+#ifdef SDCARD_CS
+#undef SDCARD_CS
+#endif
 #define SDCARD_CS 2
+#ifdef SDCARD_SCK
+#undef SDCARD_SCK
+#endif
 #define SDCARD_SCK 14
+#ifdef SDCARD_MISO
+#undef SDCARD_MISO
+#endif
 #define SDCARD_MISO 13
+#ifdef SDCARD_MOSI
+#undef SDCARD_MOSI
+#endif
 #define SDCARD_MOSI 15
 
 // I2C Pins
@@ -49,6 +102,21 @@
 #define LED_RED 17
 #define LED_GREEN 16
 #define LED_BLUE 2
+
+// LED principal (usando o LED vermelho do RGB)
+#ifdef LED
+#undef LED
+#endif
+#define LED LED_RED
+#define LED_ON HIGH
+#define LED_OFF LOW
+
+// FastLED Configuration
+#define LED_COUNT 1
+#define LED_TYPE WS2812B
+#define RGB_LED LED_BLUE
+#define LED_ORDER GRB
+#define LED_COLOR_STEP 10
 
 // Sensor de Luz (LDR/ADC)
 #define LDR_SENSOR 4
@@ -67,23 +135,23 @@
 #define VCC 5
 #define GND -1
 
-// PWM Channels
-#define LEDC_CHANNEL_0 0
-#define LEDC_CHANNEL_1 1
-#define LEDC_CHANNEL_2 2
-#define LEDC_CHANNEL_3 3
-#define LEDC_CHANNEL_4 4
-#define LEDC_CHANNEL_5 5
-#define LEDC_CHANNEL_6 6
-#define LEDC_CHANNEL_7 7
-#define LEDC_CHANNEL_8 8
-#define LEDC_CHANNEL_9 9
-#define LEDC_CHANNEL_10 10
-#define LEDC_CHANNEL_11 11
-#define LEDC_CHANNEL_12 12
-#define LEDC_CHANNEL_13 13
-#define LEDC_CHANNEL_14 14
-#define LEDC_CHANNEL_15 15
+// PWM Channels (usando nomes diferentes para evitar conflitos)
+#define BOARD_LEDC_CHANNEL_0 0
+#define BOARD_LEDC_CHANNEL_1 1
+#define BOARD_LEDC_CHANNEL_2 2
+#define BOARD_LEDC_CHANNEL_3 3
+#define BOARD_LEDC_CHANNEL_4 4
+#define BOARD_LEDC_CHANNEL_5 5
+#define BOARD_LEDC_CHANNEL_6 6
+#define BOARD_LEDC_CHANNEL_7 7
+#define BOARD_LEDC_CHANNEL_8 8
+#define BOARD_LEDC_CHANNEL_9 9
+#define BOARD_LEDC_CHANNEL_10 10
+#define BOARD_LEDC_CHANNEL_11 11
+#define BOARD_LEDC_CHANNEL_12 12
+#define BOARD_LEDC_CHANNEL_13 13
+#define BOARD_LEDC_CHANNEL_14 14
+#define BOARD_LEDC_CHANNEL_15 15
 
 // ADC Channels
 #define ADC1_CHANNEL_0 36
@@ -124,7 +192,7 @@
 // Especificações do Display
 #define TFT_WIDTH 320
 #define TFT_HEIGHT 480
-#define TFT_DRIVER ST7796
+// TFT_DRIVER definido no platformio.ini como ST7796_DRIVER=1
 
 // Especificações do Touch
 #define TOUCH_DRIVER XPT2046

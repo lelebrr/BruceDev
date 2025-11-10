@@ -154,7 +154,7 @@ public:
     void createFile();
     void saveFile();
     void fromFile(bool checkFS = true);
-    void loadFile(JsonDocument &jsonDoc, bool checkFS = true);
+    void loadFile(StaticJsonDocument<4096> &jsonDoc, bool checkFS = true);
     void factoryReset();
     void validateConfig();
     void fromJson(JsonObject obj);

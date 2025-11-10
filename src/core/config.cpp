@@ -1,8 +1,8 @@
 #include "config.h"
 #include "sd_functions.h"
 
-JsonDocument BruceConfig::toJson() const {
-    JsonDocument jsonDoc;
+StaticJsonDocument<8192> BruceConfig::toJson() const {
+    StaticJsonDocument<8192> jsonDoc;
     JsonObject setting = jsonDoc.to<JsonObject>();
 
     setting["priColor"] = String(priColor, HEX);
@@ -90,7 +90,7 @@ JsonDocument BruceConfig::toJson() const {
 
     JsonArray qrArray = setting["qrCodes"].to<JsonArray>();
     for (const auto &entry : qrCodes) {
-        JsonObject qrEntry = qrArray.add<JsonObject>();
+        JsonObject qrEntry = qrArray.createNestedObject();
         qrEntry["menuName"] = entry.menuName;
         qrEntry["content"] = entry.content;
     }
@@ -123,7 +123,7 @@ void BruceConfig::fromFile(bool checkFS) {
     }
 
     // Deserialize the JSON document
-    JsonDocument jsonDoc;
+    StaticJsonDocument<8192> jsonDoc;
     if (deserializeJson(jsonDoc, file)) {
         Serial.println("Failed to read config file, using default configuration");
         return;
@@ -497,7 +497,7 @@ void BruceConfig::fromFile(bool checkFS) {
 
 void BruceConfig::saveFile() {
     FS *fs = &LittleFS;
-    JsonDocument jsonDoc = toJson();
+    auto jsonDoc = toJson();
 
     // Open file for writing
     File file = fs->open(filepath, FILE_WRITE);

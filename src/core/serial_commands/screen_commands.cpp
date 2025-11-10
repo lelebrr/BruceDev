@@ -88,7 +88,8 @@ uint32_t clockCallback(cmd *c) {
     snprintf(timeStr, sizeof(timeStr), "%02d:%02d", _time.Hours, _time.Minutes);
     serialDevice->printf("\nCurrent time: %s", timeStr);
 #else
-    updateTimeStr(rtc.getTimeStruct());
+    time_t now = time(nullptr);
+    updateTimeStr(*localtime(&now));
     serialDevice->printf("\nCurrent time: %s", timeStr);
 #endif
     return true;

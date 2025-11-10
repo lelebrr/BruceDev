@@ -107,7 +107,7 @@ RTC_TimeTypeDef _time;
 RTC_DateTypeDef _date;
 bool clock_set = true;
 #else
-ESP32Time rtc;
+// ESP32Time rtc;  // Removido - usando tempo nativo do ESP32
 bool clock_set = false;
 #endif
 

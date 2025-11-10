@@ -11,6 +11,7 @@
 #include "settingsColor.h"
 #include "utils.h"
 #include <ELECHOUSE_CC1101_SRC_DRV.h>
+#include <ESP32Time.h>
 #include <globals.h>
 
 int currentScreenBrightness = -1;
@@ -244,7 +245,7 @@ void setUIColor() {
             {"Invert Color",
              [=]() {
                  bruceConfig.setColorInverted(!bruceConfig.colorInverted);
-                 tft.invertDisplay(bruceConfig.colorInverted);
+                 tft.invertDisplay(static_cast<bool>(bruceConfig.colorInverted));
              },
              bruceConfig.colorInverted}
         );
@@ -1303,9 +1304,9 @@ void setBadUSBBLEKeyboardLayoutMenu() {
 **********************************************************************/
 void setBadUSBBLEKeyDelayMenu() {
     String delayStr = keyboard(String(bruceConfig.badUSBBLEKeyDelay), 4, "Key Delay (ms):");
-    uint8_t delayVal = static_cast<uint8_t>(delayStr.toInt());
+    int delayVal = delayStr.toInt(); // Mudar para int para evitar always-true comparison
     if (delayVal >= 25 && delayVal <= 500) {
-        bruceConfig.setBadUSBBLEKeyDelay(delayVal);
+        bruceConfig.setBadUSBBLEKeyDelay(static_cast<uint8_t>(delayVal));
     } else if (delayVal != 0) {
         displayError("Invalid key delay value (25 to 500)", true);
     }

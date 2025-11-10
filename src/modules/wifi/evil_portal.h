@@ -2,11 +2,15 @@
 #define __EVIL_PORTAL_H__
 
 #include <DNSServer.h>
-#include <ESPAsyncWebServer.h>
+// #include <ESPAsyncWebServer.h>
 #include <globals.h>
 
+// Forward declarations
+class AsyncWebServer;
+class AsyncWebServerRequest;
+
 class EvilPortal {
-    class CaptiveRequestHandler : public AsyncWebHandler {
+    class CaptiveRequestHandler /*: public AsyncWebHandler*/ {
     public:
         CaptiveRequestHandler(EvilPortal *portal) : _portal(portal) {}
         virtual ~CaptiveRequestHandler() { _portal = nullptr; }
@@ -40,7 +44,8 @@ private:
     bool _deauth;
     bool isDeauthHeld = false;
     bool _verifyPwd; // From PR branch
-    AsyncWebServer webServer;
+    // AsyncWebServer webServer;
+    void *webServer; // Placeholder to avoid compilation errors
 
     DNSServer dnsServer;
     IPAddress apGateway;

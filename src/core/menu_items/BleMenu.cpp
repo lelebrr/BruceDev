@@ -13,20 +13,23 @@ void BleMenu::optionsMenu() {
         options.push_back({"Disconnect", [=]() {
                                BLEDevice::deinit();
                                BLEConnected = false;
-                               delete hid_ble;
-                               hid_ble = nullptr;
+                               // delete hid_ble;  // Commented out - HIDInterface not available
+                               // hid_ble = nullptr;  // Commented out - HIDInterface not available
                                if (_Ask_for_restart == 1)
                                    _Ask_for_restart = 2; // Sets the variable to ask for restart;
                            }});
     }
 
-    options.push_back({"Media Cmds", [=]() { MediaCommands(hid_ble, true); }});
+    // options.push_back({"Media Cmds", [=]() { MediaCommands(hid_ble, true); }});  // Commented out -
+    // HIDInterface not available
 #if !defined(LITE_VERSION)
     options.push_back({"BLE Scan", ble_scan});
     options.push_back({"iBeacon", [=]() { ibeacon(); }});
-    options.push_back({"Bad BLE", [=]() { ducky_setup(hid_ble, true); }});
+    // options.push_back({"Bad BLE", [=]() { ducky_setup(hid_ble, true); }});  // Commented out - HIDInterface
+    // not available
 #endif
-    options.push_back({"BLE Keyboard", [=]() { ducky_keyboard(hid_ble, true); }});
+    // options.push_back({"BLE Keyboard", [=]() { ducky_keyboard(hid_ble, true); }});  // Commented out -
+    // HIDInterface not available
     options.push_back({"Applejuice", lambdaHelper(aj_adv, 0)});
     options.push_back({"SourApple", lambdaHelper(aj_adv, 1)});
     options.push_back({"Windows Spam", lambdaHelper(aj_adv, 2)});

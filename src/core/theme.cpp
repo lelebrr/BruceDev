@@ -30,7 +30,7 @@ bool BruceTheme::openThemeFile(FS *fs, String filepath, bool overwriteConfigSett
     }
 
     // Deserialize the JSON document
-    JsonDocument jsonDoc;
+    StaticJsonDocument<8192> jsonDoc;
     if (deserializeJson(jsonDoc, file)) {
         displayError("5", true);
         log_e("THEME: %s. Using default theme", "Failed reading theme file");

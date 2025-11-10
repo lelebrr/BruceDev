@@ -29,7 +29,11 @@ uint32_t dateCallback(cmd *c) {
 
     serialDevice->print("Current time: ");
 #if !defined(HAS_RTC)
-    serialDevice->println(rtc.getDateTime());
+    time_t now = time(nullptr);
+    char dateTimeStr[50];
+    struct tm *timeinfo = localtime(&now);
+    strftime(dateTimeStr, sizeof(dateTimeStr), "%Y-%m-%d %H:%M:%S", timeinfo);
+    serialDevice->println(dateTimeStr);
     // serialDevice->println(rtc.getTime("%A, %B %d %Y %H:%M:%S"));
 #else
     _rtc.begin();
@@ -137,7 +141,9 @@ uint32_t helpCallback(cmd *c) {
 
     serialDevice->println("\nIR Commands:");
     serialDevice->println("  ir rx <timeout>      - Read an IR signal and print the dump on serialDevice->");
-    serialDevice->println("  ir rx raw <timeout>  - Read an IR signal in RAW mode and print the dump on serialDevice->");
+    serialDevice->println(
+        "  ir rx raw <timeout>  - Read an IR signal in RAW mode and print the dump on serialDevice->"
+    );
     serialDevice->println("  ir tx <protocol> <address> <decoded_value>  - Send a custom decoded IR signal.");
     serialDevice->println(
         "  ir tx_from_file <ir file path> [hide default UI true/false] - Send an IR signal saved in "
@@ -149,7 +155,8 @@ uint32_t helpCallback(cmd *c) {
         "  subghz rx <timeout>       - Read an RF signal and print the dump on serialDevice-> (alias: rf rx)"
     );
     serialDevice->println(
-        "  subghz rx raw <timeout>   - Read an RF signal in RAW mode and print the dump on serialDevice-> (alias: "
+        "  subghz rx raw <timeout>   - Read an RF signal in RAW mode and print the dump on serialDevice-> "
+        "(alias: "
         "rf rx raw)"
     );
     serialDevice->println(
@@ -280,7 +287,9 @@ uint32_t optionsCallback(cmd *c) {
     if (opt >= 0 && opt < options.size()) {
         // wakeUpScreen(); // Do not wakeup screen if it is dimmed and using Remote control
         forceMenuOption = opt;
-        serialDevice->printf("Selected option %d: %s\n", forceMenuOption, options[forceMenuOption].label.c_str());
+        serialDevice->printf(
+            "Selected option %d: %s\n", forceMenuOption, options[forceMenuOption].label.c_str()
+        );
         vTaskDelay(30 / portTICK_PERIOD_MS);
         optionsList();
     } else if (options.size() > 0) {
