@@ -21,7 +21,7 @@
  * ----------------------- ESP32-3248S035R (3.5" cheap yellow display) version --------------------------
  *   using software bit banged SPI and fixed GPIOs  + manual calibration
  * 08.2023 - Piotr Zapart www.hexefx.com
- * 
+ *
  */
 #include "ESP32-3248S035R_Touch.h"
 
@@ -110,7 +110,7 @@ void ESP32_3248S035R_Touch::update()
 {
   int16_t data[6];
 
-  if (_pspi == nullptr) 
+  if (_pspi == nullptr)
   {
     // bit-banged SPI
     digitalWrite(ESP32_3248S035R_Touch_CS, LOW);
@@ -121,7 +121,7 @@ void ESP32_3248S035R_Touch::update()
         digitalWrite(ESP32_3248S035R_Touch_CLK, HIGH);
         wait(_delay);
     }
-  
+
     //digitalWrite(ESP32_3248S035R_Touch_CS, LOW);
     transfer(0xB1 /* Z1 */);
     data[0] = transfer16(0xC1 /* Z2 */) >> 3;
@@ -134,8 +134,8 @@ void ESP32_3248S035R_Touch::update()
     transfer16(0);
     digitalWrite(ESP32_3248S035R_Touch_CS, HIGH);
 
-  } 
-  else 
+  }
+  else
   {
     // hardware SPI
     _pspi->beginTransaction(ESP32_3248S035R_Touch_SPI_SETTINGS);
@@ -155,13 +155,13 @@ void ESP32_3248S035R_Touch::update()
 	//
 	if ( (data[0] < threshold) || (data[3] < threshold) || (data[4] < threshold) ) zraw = 0;
   else zraw = 4095;
-	
+
 	if (zraw > threshold)
 	{
 		// average the 3 raw data points
 		xraw = (data[2] + 4095-data[2])/2;
 		yraw = (data[1] + data[5])/2;
-	} else 
+	} else
 	{
 		xraw = yraw = zraw = 0;
 	}
