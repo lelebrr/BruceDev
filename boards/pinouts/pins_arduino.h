@@ -46,4 +46,6 @@
 #include "../ESP32-C5/pins_arduino.h"
 #elif defined(ESP32_3248S035)
 #include "../ESP32-3248S035/pins_arduino.h"
+#elif defined(ESP32_3248S035R)
+#include "../ESP32-3248S035R/pins_arduino.h"
 #endif
