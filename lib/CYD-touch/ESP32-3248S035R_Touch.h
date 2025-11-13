@@ -20,7 +20,7 @@
  * THE SOFTWARE.
  * ----------------------- ESP32-3248S035R (3.5" cheap yellow display) version --------------------------
  *   using software bit banged SPI and fixed GPIOs  + manual calibration
- *
+ * 
  */
 
 #ifndef _ESP32_3248S035R_TOUCH_H_
@@ -96,4 +96,4 @@ private:
 
 };
 
-#endif
+#endif 
