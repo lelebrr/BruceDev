@@ -1,5 +1,5 @@
 #pragma once
-#include <stdint.h>
+#include <Arduino.h>
 
 static const uint8_t SDA = 22;
 static const uint8_t SCL = 23;
