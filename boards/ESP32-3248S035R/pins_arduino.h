@@ -1,4 +1,5 @@
 #pragma once
+#include <stdint.h>
 
 static const uint8_t SDA = 22;
 static const uint8_t SCL = 23;
